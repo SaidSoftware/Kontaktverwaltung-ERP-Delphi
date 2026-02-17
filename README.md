@@ -56,6 +56,15 @@ Wichtige Module:
 - Installierte **DevExpress VCL Library**
 - Zugriff auf **MS SQL Server**
 ---
+Ziel des Projekts
+
+Dieses Projekt demonstriert:
+
+Entwicklung und Wartung einer bestehenden Business-Software
+Arbeit mit Legacy-Code
+Datenbankgebundene Anwendungen
+Strukturierte Desktop-Anwendungsarchitektur
+Erweiterung bestehender Systeme um neue Funktionen
 
 ## Installation & Start
 
