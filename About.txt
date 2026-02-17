@@ -1,0 +1,6 @@
+This demo shows the Hamburger menu, its states, and display modes.
+
+Click a hamburger icon to expand or collapse the menu. Use the "Display Mode" radio button group to select one of the three display modes available for the Hamburger menu:
+- Inline. The expanded Hamburger menu and an application's content share the same area. The content's area shrinks to free up enough space to display the expanded menu. The collapsed menu is a bar with group icons.
+- Overlay. The Hamburger menu overlaps an application's content area. The collapsed menu looks identically in Inline and Overlay modes.
+- Minimal. The Hamburger menu overlaps an application's content area. Unlike Overlay mode, only the Hamburger icon is visible when the menu is collapsed.

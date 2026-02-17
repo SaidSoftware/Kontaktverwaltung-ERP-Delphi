@@ -1,0 +1,296 @@
+unit KontaktKlassen;
+
+interface
+
+uses
+  System.SysUtils, System.Classes,vcl.Grids,Generics.Collections;
+
+
+type TKontaktPerson= class
+
+private
+    FAnrede: string;  //array + Titel
+    FTitel: string;  //array
+
+    FName: string;
+    FVorname: string;
+    FGeburtsdatum: TDate;
+
+   //TTelefon
+    FTelefon: string;
+    FTelefonzwei: string;
+    FTelefondrei: string;
+
+   //TEmail
+    FEmail: string;
+    FEmailzwei: string;
+    FEmaildrei: string;
+
+   //TAdresse
+    FOrt: string;
+    FPLZ: string;
+    FStrasse: string;
+    FHausnummer: string;
+    FNotizen: string;
+
+    function  GetGeburtsdatum: TDate;
+    procedure SetGeburtsdatum(const Value: TDate);
+    procedure SetTelefonData(const ATelefon, ATelefonzwei, ATelefondrei: string);
+    procedure SetEmailData(const AEmail, AEmailzwei, AEmaildrei: string);
+
+
+  public
+    // Properties
+    FList: TList<String>;           //Liste? oder records?
+    constructor Create; overload;
+
+    property Anrede: string read FAnrede write FAnrede;
+    property Titel: string read FTitel write FTitel;
+    property Name: string read FName write FName;
+    property Vorname: string read FVorname write FVorname;
+    property Geburtsdatum: TDate read GetGeburtsdatum write SetGeburtsdatum;
+    property Telefon: string read FTelefon write FTelefon;
+    property Telefonzwei: string read FTelefonzwei write FTelefonzwei;
+    property Telefondrei: string read FTelefondrei write FTelefondrei;
+    property Email: string read FEmail write FEmail;
+    property Emailzwei: string read FEmailzwei write FEmailzwei;
+    property Emaildrei: string read FEmaildrei write FEmaildrei;
+    property Ort: string read FOrt write FOrt;
+    property PLZ: string read FPLZ write FPLZ;
+    property Strasse: string read FStrasse write FStrasse;
+    property Hausnummer: string read FHausnummer write FHausnummer;
+    property Notizen: string read FNotizen write FNotizen;
+
+    constructor Create(const AAnrede, ATitel, AName, AVorname: string; AGeburtsdatum: TDate;
+      ATelefon, ATelefonzwei, ATelefondrei, AEmail, AEmailzwei, AEmaildrei, AOrt, APLZ,
+      AStrasse, AHausnummer, ANotizen: string) overload;
+
+    procedure AddToGrid(StringGrid: TStringGrid);
+    procedure LoadFromGrid(StringGrid: TStringGrid; Row: Integer);
+    procedure UpdateFromForm(Plist:Tlist<String>); //Liste
+    destructor Destroy; override;
+end;
+
+ implementation
+
+{ TKontaktPerson }
+
+constructor TKontaktPerson.Create;
+begin
+  inherited Create;
+  FAnrede := '';
+  FTitel := '';
+  FName := '';
+  FVorname := '';
+  FGeburtsdatum := 0;
+  FTelefon := '';
+  FTelefonzwei := '';
+  FTelefondrei := '';
+  FEmail := '';
+  FEmailzwei := '';
+  FEmaildrei := '';
+  FOrt := '';
+  FPLZ := '';
+  FStrasse := '';
+  FHausnummer := '';
+  FNotizen := '';
+  FList := TList<String>.Create;
+end;
+
+constructor TKontaktPerson.Create(const AAnrede, ATitel, AName, AVorname: string; AGeburtsdatum: TDate;
+  ATelefon, ATelefonzwei, ATelefondrei, AEmail, AEmailzwei, AEmaildrei, AOrt, APLZ,
+  AStrasse, AHausnummer, ANotizen: string);
+begin
+inherited Create;
+  FAnrede := AAnrede;
+  FTitel := ATitel;
+  FName := AName;
+  FVorname := AVorname;
+  FGeburtsdatum := AGeburtsdatum;
+  FTelefon := ATelefon;
+  FTelefonzwei := ATelefonzwei;
+  FTelefondrei := ATelefondrei;
+  FEmail := AEmail;
+  FEmailzwei := AEmailzwei;
+  FEmaildrei := AEmaildrei;
+  FOrt := AOrt;
+  FPLZ := APLZ;
+  FStrasse := AStrasse;
+  FHausnummer := AHausnummer;
+  FNotizen := ANotizen;
+  FlIst:=Tlist<String>.Create;
+end;
+
+{Destroy}
+destructor TKontaktPerson.Destroy;
+begin
+  FList.Free;
+  inherited Destroy;
+end;
+
+ {SetTelefon}
+procedure TKontaktPerson.SetTelefonData(const ATelefon, ATelefonzwei, ATelefondrei: string);
+begin
+  FTelefon := ATelefon;
+
+  if ATelefonzwei <> '' then begin
+    FTelefon := FTelefon + ', ' + ATelefonzwei;
+  end;
+
+
+  if ATelefondrei <> '' then  begin
+    FTelefon := FTelefon + ', ' + ATelefondrei;
+  end;
+ end;
+
+ {SetEmail}
+procedure TKontaktPerson.SetEmailData(const AEmail, AEmailzwei, AEmaildrei: string);
+ begin
+  FEmail := AEmail;
+
+  if AEmailzwei <> '' then     begin
+    FEmail := FEmail + ', ' + AEmailzwei;
+  end;
+  if AEmaildrei <> '' then     begin
+    FEmail := FEmail + ', ' + AEmaildrei;
+  end;
+ end;
+
+{UpdateFromForm}
+procedure TKontaktPerson.UpdateFromForm(PList: TList<String>);
+  begin
+    Anrede := PList.Items[0];
+    Titel := PList.Items[1];
+    Name := PList.Items[2];
+    Vorname := PList.Items[3];
+    Geburtsdatum := StrToDate(PList.Items[4]);
+    SetTelefonData(PList.Items[5], PList.Items[5], PList.Items[5]);
+    SetEmailData(PList.Items[6],PList.Items[6], PList.Items[6]);
+    PLZ := PList.Items[7];
+    Ort := PList.Items[8];
+    Strasse := PList.Items[9];
+    Hausnummer := PList.Items[9];
+    Notizen := PList.Items[10];
+  end;
+
+//import
+function TKontaktPerson.GetGeburtsdatum: TDate;
+begin
+  Result := FGeburtsdatum;
+end;
+
+procedure TKontaktPerson.SetGeburtsdatum(const Value: TDate);
+begin
+  if Value > Date then begin
+    raise Exception.Create('Geburtsdatum darf nicht in der Zukunft liegen.');
+    FGeburtsdatum := Value;
+  end;
+end;
+
+
+{AddToGrid}
+procedure TKontaktPerson.AddToGrid(StringGrid: TStringGrid);
+var
+  RowIndex: Integer;
+begin
+  RowIndex := StringGrid.RowCount;
+  StringGrid.RowCount := RowIndex + 1;
+
+  StringGrid.Cells[0, RowIndex] := IntToStr(RowIndex);
+  StringGrid.Cells[1, RowIndex] := Anrede;
+  StringGrid.Cells[2, RowIndex] := Titel;
+  StringGrid.Cells[3, RowIndex] := Name;
+  StringGrid.Cells[4, RowIndex] := Vorname;
+  StringGrid.Cells[5, RowIndex] := DateToStr(Geburtsdatum);
+  StringGrid.Cells[6, RowIndex] := Telefon;
+
+  if Telefonzwei <> '' then  begin
+    StringGrid.Cells[6, RowIndex] := StringGrid.Cells[6, RowIndex] + ', ' + Telefonzwei;
+  end else begin
+    StringGrid.Cells[6, RowIndex] := 'N/A';    //nicht verfügbar
+  end;
+
+  if Telefondrei <> '' then  begin
+    StringGrid.Cells[6, RowIndex] := StringGrid.Cells[6, RowIndex] + ', ' + Telefondrei;
+  end else begin
+    StringGrid.Cells[6, RowIndex] := 'N/A';    //nicht verfügbar
+  end;
+
+  StringGrid.Cells[7, RowIndex] := Email;
+
+  if Emailzwei <> '' then   begin
+    StringGrid.Cells[7, RowIndex] := StringGrid.Cells[7, RowIndex] + ', ' + Emailzwei;
+  end else begin
+    StringGrid.Cells[7, RowIndex] := 'N/A';    //nicht verfügbar
+  end;
+
+  if Emaildrei <> '' then  begin
+    StringGrid.Cells[7, RowIndex] := StringGrid.Cells[7, RowIndex] + ', ' + Emaildrei;
+  end else begin
+    StringGrid.Cells[7, RowIndex] := 'N/A';   //nicht verfügbar
+  end;
+
+  StringGrid.Cells[8, RowIndex] := PLZ;
+  StringGrid.Cells[9, RowIndex] := Ort;
+  StringGrid.Cells[10, RowIndex] := Strasse + ' ' + Hausnummer;
+  StringGrid.Cells[11, RowIndex] := Notizen;
+end;
+
+{LoadFromGrid}
+procedure TKontaktPerson.LoadFromGrid(StringGrid: TStringGrid; Row: Integer);
+var
+  TelefonParts, EmailParts: TStringList;
+begin
+  TelefonParts := TStringList.Create;
+  EmailParts := TStringList.Create;
+  try
+    Anrede := StringGrid.Cells[1, Row];
+    Titel := StringGrid.Cells[2, Row];
+    Name := StringGrid.Cells[3, Row];
+    Vorname := StringGrid.Cells[4, Row];
+    Geburtsdatum := StrToDate(StringGrid.Cells[5, Row]);
+    ExtractStrings([','], [' '], PChar(StringGrid.Cells[6, Row]), TelefonParts);
+
+//Führt eine abstrakte Eigenschaft ein, die die Anzahl der String-Einträge in der Liste repräsentiert.
+
+   case TelefonParts.Count of
+   1: Telefon := TelefonParts[0];
+   2:  begin
+        Telefon := TelefonParts[0];
+        Telefonzwei := TelefonParts[1];
+       end;
+   3:  begin
+        Telefon := TelefonParts[0];
+        Telefonzwei := TelefonParts[1];
+        Telefondrei := TelefonParts[2];
+       end;
+    end;
+
+    ExtractStrings([','], [' '], PChar(StringGrid.Cells[7, Row]), EmailParts);
+
+   case EmailParts.Count of
+   1: Email := EmailParts[0];
+   2: begin
+       Email := EmailParts[0];
+       Emailzwei := EmailParts[1];
+      end;
+   3: begin
+       Email := EmailParts[0];
+       Emailzwei := EmailParts[1];
+       Emaildrei := EmailParts[2];
+      end;
+   end;
+
+    PLZ := StringGrid.Cells[8, Row];
+    Ort := StringGrid.Cells[9, Row];
+    Strasse := Copy(StringGrid.Cells[10, Row], 1, Pos(' ', StringGrid.Cells[10, Row]) - 1);
+    Hausnummer := Copy(StringGrid.Cells[10, Row], Pos(' ', StringGrid.Cells[10, Row]) + 1, Length(StringGrid.Cells[10, Row]));
+    Notizen := StringGrid.Cells[11, Row];
+  finally
+    TelefonParts.Free;
+    EmailParts.Free;
+  end;
+
+end;
+
+end.

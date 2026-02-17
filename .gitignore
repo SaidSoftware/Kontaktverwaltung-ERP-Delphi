@@ -1,0 +1,27 @@
+# ==== Delphi ====
+__history/
+
+# Build output
+Win32/
+Win64/
+**/Win32/
+**/Win64/
+Debug/
+Release/
+**/Debug/
+**/Release/
+
+# Compiled
+*.dcu
+*.exe
+*.dll
+*.bpl
+*.identcache
+*.local
+*.stat
+*.dsk
+*.tvsconfig
+
+# Backup
+*.~*
+*.bak

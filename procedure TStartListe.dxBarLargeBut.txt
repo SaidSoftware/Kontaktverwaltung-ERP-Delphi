@@ -1,0 +1,197 @@
+procedure TStartListe.dxBarLargeButBearbeitenClick(Sender: TObject);
+var
+  Row: Integer;
+  KontaktForm: TKontaktMenu;
+  KontaktLoad: TPerson;
+begin
+  Row := StringGrid1.Row;
+  if (Row > 0) and (Row < StringGrid1.RowCount) then
+  begin
+    KontaktForm := TKontaktMenu.Create(Self);
+    try
+      KontaktLoad := TPerson.Create(
+        ['', ''],  // AnredeTitel
+        '',        // Name
+        '',        // Vorname
+        TTelefon.Create('', '', ''),  // Telefon
+        TEmail.Create('', '', ''),    // Email
+        TAdresse.Create('', '', '', ''),  // Adresse
+        Now,      // Geburtsdatum
+        ''        // Notizen
+      );
+      try
+        KontaktLoad.LoadFromGrid(StringGrid1, Row);
+
+        // Заполнение форм с данными
+        KontaktForm.ComboBoxAnrede.Text := KontaktLoad.AnredeTitel[0];
+        KontaktForm.ComboBoxTitel.Text := KontaktLoad.AnredeTitel[1];
+        KontaktForm.EditName.Text := KontaktLoad.Name;
+        KontaktForm.EditVorname.Text := KontaktLoad.Vorname;
+        KontaktForm.exEditGeburtsdatum.Text := DateToStr(KontaktLoad.Geburtsdatum);
+
+        // Заполнение телефонов и типов
+        if KontaktLoad.Telefon.Nummern <> '' then begin
+          KontaktForm.EditTelefon.Text := KontaktLoad.Telefon.Nummern;
+          KontaktForm.cxComboBoxTelefon.Text := 'Privat'; // Или установить правильный тип
+        end;
+
+        if KontaktLoad.Telefon.Nummerzwei <> '' then begin
+          KontaktForm.EditTelefonzwei.Text := KontaktLoad.Telefon.Nummerzwei;
+          KontaktForm.cxComboBoxTelefonzwei.Text := 'Mobil'; // Или установить правильный тип
+        end;
+
+        if KontaktLoad.Telefon.Nummerdrei <> '' then begin
+          KontaktForm.EditTelefondrei.Text := KontaktLoad.Telefon.Nummerdrei;
+          KontaktForm.cxComboBoxTelefondrei.Text := 'Büro'; // Или установить правильный тип
+        end;
+
+        // Заполнение email и их типов
+        if KontaktLoad.Email.Emails <> '' then begin
+          KontaktForm.EditEmail.Text := KontaktLoad.Email.Emails;
+          KontaktForm.cxComboBoxEmail.Text := 'Büro'; // Или установить правильный тип
+        end;
+
+        if KontaktLoad.Email.Emailzwei <> '' then begin
+          KontaktForm.EditEmailzwei.Text := KontaktLoad.Email.Emailzwei;
+          KontaktForm.cxComboBoxEmailzwei.Text := 'Büro'; // Или установить правильный тип
+        end;
+
+        if KontaktLoad.Email.Emaildrei <> '' then begin
+          KontaktForm.EditEmaildrei.Text := KontaktLoad.Email.Emaildrei;
+          KontaktForm.cxComboBoxEmaildrei.Text := 'Büro'; // Или установить правильный тип
+        end;
+
+        // Заполнение адреса
+        KontaktForm.EditPLZ.Text := KontaktLoad.Adresse.PLZ;
+        KontaktForm.EditOrt.Text := KontaktLoad.Adresse.Ort;
+        KontaktForm.EditStrasse.Text := KontaktLoad.Adresse.Strasse;
+        KontaktForm.EditHausnummer.Text := KontaktLoad.Adresse.Hausnummer;
+        KontaktForm.EditNotizen.Text := KontaktLoad.Notizen;
+
+        // Заполнение изображения
+        if StringGrid1.Cells[15, Row] <> '' then
+          KontaktForm.cxImage1.Picture.Assign(Base64ToImage(StringGrid1.Cells[15, Row]))
+        else
+          KontaktForm.cxImage1.Picture := nil;
+
+        // Сохранение данных после редактирования
+        if KontaktForm.ShowModal = mrOk then begin
+          StringGrid1.Cells[1, Row] := KontaktForm.ComboBoxAnrede.Text;
+          StringGrid1.Cells[2, Row] := KontaktForm.ComboBoxTitel.Text;
+          StringGrid1.Cells[3, Row] := KontaktForm.EditName.Text;
+          StringGrid1.Cells[4, Row] := KontaktForm.EditVorname.Text;
+          StringGrid1.Cells[5, Row] := KontaktForm.exEditGeburtsdatum.Text;
+
+          // Сохранение телефонов и их типов
+          StringGrid1.Cells[6, Row] := KontaktForm.EditTelefon.Text; // Номер телефона
+          StringGrid1.Cells[7, Row] := KontaktForm.cxComboBoxTelefon.Text; // Тип телефона
+
+          StringGrid1.Cells[8, Row] := KontaktForm.EditTelefonzwei.Text; // Второй номер
+          StringGrid1.Cells[9, Row] := KontaktForm.cxComboBoxTelefonzwei.Text; // Тип второго телефона
+
+          StringGrid1.Cells[10, Row] := KontaktForm.EditTelefondrei.Text; // Третий номер
+          StringGrid1.Cells[11, Row] := KontaktForm.cxComboBoxTelefondrei.Text; // Тип третьего телефона
+
+          // Сохранение email и их типов
+          StringGrid1.Cells[12, Row] := KontaktForm.EditEmail.Text; // Email
+          StringGrid1.Cells[13, Row] := KontaktForm.cxComboBoxEmail.Text; // Тип email
+
+          StringGrid1.Cells[14, Row] := KontaktForm.EditEmailzwei.Text; // Второй email
+          StringGrid1.Cells[15, Row] := KontaktForm.cxComboBoxEmailzwei.Text; // Тип второго email
+
+          if not KontaktForm.cxImage1.Picture.Graphic.Empty then
+            StringGrid1.Cells[16, Row] := ImageToBase64(KontaktForm.cxImage1) // Здесь сохранение изображения в ячейку 15
+          else
+            StringGrid1.Cells[16, Row] := '';
+        end;
+      finally
+        KontaktLoad.Free;
+      end;
+    finally
+      KontaktForm.Free;
+    end;
+  end
+  else
+  begin
+    ShowMessage('Bitte wählen Sie einen Kontakt zum Bearbeiten aus.');
+  end;
+end;
+
+
+unit Combobox;
+
+interface
+
+uses
+  System.SysUtils, System.Generics.Collections,System.Classes, Vcl.Grids;
+
+
+  procedure SetGridUpdater(StringGrid: TStringGrid);
+  procedure UpdateGridColumnHeader(ColumnIndex: Integer; NewHeader: string);
+  function GetGridColumnHeader(ColumnIndex: Integer): string;
+
+
+implementation
+
+{ TComboboxes }
+var
+  GlobalStringGrid: TStringGrid = nil;
+  OriginalHeaders: array of string;
+
+
+procedure SetGridUpdater(StringGrid: TStringGrid);
+begin
+  GlobalStringGrid := StringGrid;
+
+  SetLength(OriginalHeaders, GlobalStringGrid.ColCount);
+  for var i := 0 to GlobalStringGrid.ColCount - 1 do
+    OriginalHeaders[i] := GlobalStringGrid.Cells[i, 0];
+end;
+
+procedure UpdateGridColumnHeader(ColumnIndex: Integer; NewHeader: string);
+begin
+  if Assigned(GlobalStringGrid) and (ColumnIndex >= 0) and (ColumnIndex < GlobalStringGrid.ColCount) then
+    GlobalStringGrid.Cells[ColumnIndex, 0] := NewHeader;
+end;
+
+function GetGridColumnHeader(ColumnIndex: Integer): string;
+begin
+  if Assigned(GlobalStringGrid) and (ColumnIndex >= 0) and (ColumnIndex < GlobalStringGrid.ColCount) then
+    Result := GlobalStringGrid.Cells[ColumnIndex, 0]
+  else
+    Result := '';
+end;
+
+end.
+
+
+{Combobox}
+procedure TKontaktMenu.cxComboBoxTelefondreiPropertiesChange(Sender: TObject);
+var
+  NewHeader: string;
+begin
+  if cxComboBoxTelefondrei.ItemIndex >= 0 then begin
+    NewHeader := cxComboBoxTelefondrei.Properties.Items[cxComboBoxTelefondrei.ItemIndex];
+    UpdateGridColumnHeader(8, NewHeader);
+  end;
+end;
+
+procedure TKontaktMenu.cxComboBoxTelefonPropertiesChange(Sender: TObject);
+var
+  NewHeader: string;
+begin
+  if cxComboBoxTelefon.ItemIndex >= 0 then begin
+    NewHeader := cxComboBoxTelefon.Properties.Items[cxComboBoxTelefon.ItemIndex];
+    UpdateGridColumnHeader(6, NewHeader);
+  end;
+end;
+
+procedure TKontaktMenu.cxComboBoxTelefonzweiPropertiesChange(Sender: TObject);
+var
+  NewHeader: string;
+begin
+  if cxComboBoxTelefonzwei.ItemIndex >= 0 then begin
+    NewHeader := cxComboBoxTelefonzwei.Properties.Items[cxComboBoxTelefonzwei.ItemIndex];
+    UpdateGridColumnHeader(7, NewHeader);
+  end;
+end;

@@ -1,0 +1,340 @@
+﻿object FormNotiz: TFormNotiz
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMaximize]
+  Caption = 'FormNotiz'
+  ClientHeight = 639
+  ClientWidth = 952
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Icon.Data = {
+    0000010001001010000001002000680400001600000028000000100000002000
+    0000010020000000000000040000000000000000000000000000000000000000
+    0023000000330000003300000033000000330000003300000033000000330000
+    003300000033000000330000003300000033000000330000002B000000003586
+    BFC03890CEFF388FCEFF3990CEFF3A91CFFF3991CFFF3890CEFF368ECDFF388E
+    D1FF3E91DCFF1A8F8AFF008C47FF008B49FF008C4AFF118B73DE0000001E3890
+    CEFF74DEFFFF5ED1FAFF4CC8F4FF3BAEE4FF55B0E3FF4FACE0FF7EE2FFFF83E3
+    FFFF34B29AFF009750FF00BB83FF77E0C6FF00BB85FF00995AFF007E45AB388F
+    CEFF5ED1FAFF4AC5F2FF3BA9E0FF38BDF2FF3589C9FF77DFFFFF74DBFFFF7BDE
+    FFFF008436FF00BF88FF00BC83FFFFFFFFFF00BC83FF00C18DFF008C4CFF3990
+    CEFF4CC9F4FF3BA9E0FF38BAEFFF47D5FFFF3588C8FF71DCFFFF6FD8FFFF77DC
+    FFFF008336FF75E6CBFFFFFFFFFFFFFFFFFFFFFFFFFF77E7CEFF008B49FF3A91
+    CFFF3BAEE4FF38BDF2FF47D5FFFF67DFFFFF3487C8FF6BDAFFFF69D7FFFF70DA
+    FFFF008334FF00CB93FF00C98FFFFFFFFFFF00C990FF00CD98FF008C4AFF3991
+    CFFF5AB1E3FF3689C9FF3688C8FF3587C8FF46A6DDFF64D8FFFF63D5FFFF68D8
+    FFFF28A995FF009D58FF00D29AFF75EED3FF00D49CFF00A363FF008E4B943790
+    CEFF59AFE0FF61DBFFFF62D9FFFF61D8FFFF60D7FFFF5FD4FFFF5ED3FFFF60D5
+    FFFF67D8FFFF26A995FF008334FF008336FF008537FF198D88FF00000000358E
+    CDFF96EBFFFF57D4FFFF59D3FFFF59D3FFFF59D3FFFF59D2FFFF59D2FFFF59D2
+    FFFF5BD4FFFF5FD6FFFF61D7FFFF5FD8FFFF9DEDFFFF3B8ED8FF00000000338C
+    CCFF99EAFFFF4FD1FFFF52D0FFFF53D1FFFF53D1FFFF53D1FFFF53D1FFFF53D1
+    FFFF53D1FFFF54D1FFFF54D1FFFF50D2FFFF9BEAFFFF358DCEFF00000000338C
+    CCFF9DEAFFFF47CEFFFF4ACEFFFF4BCFFFFF4BCFFFFF4BCFFFFF4BCFFFFF4BCF
+    FFFF4BCFFFFF4BCFFFFF4ACEFFFF47CEFFFF9DEAFFFF338CCCFF00000000328C
+    CCFFA2EDFFFF8CE4FFFF8FE4FFFF90E4FFFF90E4FFFF90E4FFFF90E4FFFF90E4
+    FFFF90E4FFFF90E4FFFF8FE4FFFF8CE4FFFFA2EDFFFF328CCCFF00000000328C
+    CCFFA9EFFFFF37B5EEFF3BB6EEFF3CB7EEFF3CB7EEFF3CB7EEFF3CB7EEFF3CB7
+    EEFF3CB7EEFF3CB7EEFF3BB6EEFF37B5EEFFA9EFFFFF328CCCFF00000000338C
+    CCFFB3F3FFFF37CDFFFF3BCDFFFF3CCEFFFF3CCEFFFF3CCEFFFF3CCEFFFF3CCE
+    FFFF3CCEFFFF3CCEFFFF3BCDFFFF37CDFFFFB3F3FFFF338CCCFF00000000368E
+    CEFF85EAFFFF85E7FFFF86E6FFFF87E6FFFF87E6FFFF87E6FFFF87E6FFFF87E6
+    FFFF87E6FFFF87E6FFFF86E6FFFF85E7FFFF85EAFFFF368ECEFF000000003992
+    CFEF368ECEFF358DCCFF358CCCFF358CCCFF358CCCFF358CCCFF358CCCFF358C
+    CCFF358CCCFF358CCCFF358CCCFF358DCCFF368ECEFF3992CFEF000000000001
+    0000000000000000000000000000000000000000000000000000000100000001
+    000000010000000100000001000000010000000100000001000000010000}
+  Position = poMainFormCenter
+  OnCreate = FormCreate
+  OnShow = FormShow
+  TextHeight = 15
+  object dxPanel1: TdxPanel
+    Left = 0
+    Top = 0
+    Width = 952
+    Height = 639
+    Align = alClient
+    TabOrder = 4
+    object dxLayoutControlNotizen: TdxLayoutControl
+      Left = 0
+      Top = 0
+      Width = 950
+      Height = 637
+      Align = alClient
+      TabOrder = 0
+      LayoutLookAndFeel = Papierkorb.dxLayoutCxLookAndFeelMain
+      object cxMemoNotiz: TcxMemo
+        Left = 27
+        Top = 209
+        Lines.Strings = (
+          'cxMemoNotiz')
+        Properties.ScrollBars = ssVertical
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 2
+        Height = 397
+        Width = 896
+      end
+      object cxTextEditAutor: TcxTextEdit
+        Left = 27
+        Top = 58
+        AutoSize = False
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 0
+        Height = 27
+        Width = 231
+      end
+      object cxImageComboBoxKate: TcxImageComboBox
+        Left = 495
+        Top = 58
+        AutoSize = False
+        Properties.Images = Papierkorb.cxImageListKategorisieren
+        Properties.Items = <
+          item
+            Description = 'Wichtige Informationen'
+            ImageIndex = 2
+            Value = 0
+          end
+          item
+            Description = 'Weitere Informationen'
+            ImageIndex = 3
+            Value = 1
+          end
+          item
+            Description = 'Notizen ohne besondere Priorit'#228't'
+            ImageIndex = 4
+            Value = 2
+          end
+          item
+            Description = 'Notizen zur weiteren Diskussion'
+            ImageIndex = 6
+            Value = 4
+          end>
+        Style.HotTrack = False
+        Style.TransparentBorder = False
+        TabOrder = 1
+        Height = 23
+        Width = 229
+      end
+      object dxLayoutControlNotizenGroup_Root: TdxLayoutGroup
+        AlignHorz = ahClient
+        AlignVert = avClient
+        Hidden = True
+        ShowBorder = False
+        Index = -1
+      end
+      object dxLayoutItem3: TdxLayoutItem
+        Parent = dxLayoutCreatedGroupInhalt
+        AlignHorz = ahClient
+        AlignVert = avClient
+        Control = cxMemoNotiz
+        ControlOptions.OriginalHeight = 231
+        ControlOptions.OriginalWidth = 495
+        ControlOptions.ShowBorder = False
+        Index = 0
+      end
+      object dxLayoutCreatedGroupInhalt: TdxLayoutGroup
+        Parent = dxLayoutControlNotizenGroup_Root
+        AlignHorz = ahClient
+        AlignVert = avClient
+        CaptionOptions.Text = 'Inhalt'
+        Index = 1
+      end
+      object dxLayoutItem1: TdxLayoutItem
+        Parent = dxLayoutGroup1
+        AlignHorz = ahLeft
+        Control = cxTextEditAutor
+        ControlOptions.OriginalHeight = 27
+        ControlOptions.OriginalWidth = 231
+        ControlOptions.ShowBorder = False
+        Index = 0
+      end
+      object dxLayoutGroup1: TdxLayoutGroup
+        Parent = dxLayoutAutoCreatedGroup1
+        AlignHorz = ahClient
+        AlignVert = avClient
+        CaptionOptions.Text = 'Autor'
+        Index = 0
+      end
+      object dxLayoutGroup2: TdxLayoutGroup
+        Parent = dxLayoutAutoCreatedGroup1
+        AlignHorz = ahClient
+        AlignVert = avClient
+        CaptionOptions.Text = 'Kategorisieren'
+        Index = 1
+      end
+      object dxLayoutAutoCreatedGroup1: TdxLayoutAutoCreatedGroup
+        Parent = dxLayoutControlNotizenGroup_Root
+        AlignHorz = ahClient
+        AlignVert = avClient
+        LayoutDirection = ldHorizontal
+        Index = 0
+      end
+      object dxLayoutItem4: TdxLayoutItem
+        Parent = dxLayoutGroup2
+        AlignHorz = ahLeft
+        Control = cxImageComboBoxKate
+        ControlOptions.OriginalHeight = 23
+        ControlOptions.OriginalWidth = 229
+        ControlOptions.ShowBorder = False
+        Index = 0
+      end
+    end
+  end
+  object dxBarManagerNotiz: TdxBarManager
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Categories.Strings = (
+      'Default')
+    Categories.ItemsVisibles = (
+      2)
+    Categories.Visibles = (
+      True)
+    ImageOptions.LargeImages = Papierkorb.cxImageListStartlist
+    PopupMenuLinks = <>
+    UseSystemFont = True
+    Left = 424
+    Top = 16
+    PixelsPerInch = 96
+    object dxBarManagerNotizBar1: TdxBar
+      BorderStyle = bbsNone
+      Caption = 'Custom Notiz'
+      CaptionButtons = <>
+      DockedDockingStyle = dsTop
+      DockedLeft = 0
+      DockedTop = 0
+      DockingStyle = dsTop
+      FloatLeft = 637
+      FloatTop = 2
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      Images = Papierkorb.cxImageListStartlist
+      IsMainMenu = True
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButSpeichern'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButZur'#252'cksetzen'
+        end>
+      MultiLine = True
+      OneOnRow = True
+      Row = 0
+      ShowMark = False
+      UseOwnFont = False
+      Visible = False
+      WholeRow = True
+    end
+    object dxBarLargeButSpeichern: TdxBarLargeButton
+      Caption = 'Speichern und Schlie'#223'en'
+      Category = 0
+      Hint = 'Speichern und Schlie'#223'en'
+      Visible = ivAlways
+      OnClick = dxBarLargeButSpeichernClick
+      AutoGrayScale = False
+      LargeImageIndex = 31
+    end
+    object dxBarLargeButZurücksetzen: TdxBarLargeButton
+      Caption = 'Zur'#252'cksetzen'
+      Category = 0
+      Hint = 'Zur'#252'cksetzen'
+      Visible = ivAlways
+      OnClick = dxBarLargeButZurücksetzenClick
+      AutoGrayScale = False
+      LargeImageIndex = 12
+    end
+    object dxBarLargeButSchliessen: TdxBarLargeButton
+      Caption = 'Schlie'#223'en'
+      Category = 0
+      Hint = 'Schlie'#223'en'
+      Visible = ivAlways
+      OnClick = dxBarLargeButSchliessenClick
+      AutoGrayScale = False
+      LargeImageIndex = 2
+    end
+  end
+  object cxImageListNotiz: TcxImageList
+    SourceDPI = 96
+    FormatVersion = 1
+    DesignInfo = 262648
+    ImageInfo = <
+      item
+        ImageClass = 'TBitmap'
+        Image.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000000000000000000000000000000000000000000230000
+          0033000000330000003300000033000000330000003300000033000000330000
+          0033000000330000003300000033000000330000002B00000000276590C03790
+          CEFF378FCEFF3890CEFF3991CFFF3891CFFF3790CEFF358ECDFF378ED1FF3D91
+          DCFF198F8AFF008C46FF008B48FF008C49FF0E7963DE0000001E3790CEFF73DE
+          FFFF5DD1FAFF4BC8F4FF3AAEE4FF54B0E3FF4EACE0FF7DE2FFFF83E3FFFF33B2
+          9AFF00974FFF00BB83FF76E0C6FF00BB85FF009959FF00542EAB378FCEFF5DD1
+          FAFF49C5F2FF3AA9E0FF37BDF2FF3489C9FF76DFFFFF73DBFFFF7ADEFFFF0084
+          35FF00BF88FF00BC83FFFFFFFFFF00BC83FF00C18DFF008C4BFF3890CEFF4BC9
+          F4FF3AA9E0FF37BAEFFF46D5FFFF3488C8FF70DCFFFF6ED8FFFF76DCFFFF0083
+          35FF74E6CBFFFFFFFFFFFFFFFFFFFFFFFFFF76E7CEFF008B48FF3991CFFF3AAE
+          E4FF37BDF2FF46D5FFFF66DFFFFF3387C8FF6ADAFFFF68D7FFFF6FDAFFFF0083
+          33FF00CB93FF00C98FFFFFFFFFFF00C990FF00CD98FF008C49FF3891CFFF59B1
+          E3FF3589C9FF3588C8FF3487C8FF45A6DDFF63D8FFFF62D5FFFF67D8FFFF27A9
+          95FF009D57FF00D29AFF74EED3FF00D49CFF00A362FF00522B943690CEFF58AF
+          E0FF60DBFFFF61D9FFFF60D8FFFF5FD7FFFF5ED4FFFF5DD3FFFF5FD5FFFF66D8
+          FFFF25A995FF008333FF008335FF008536FF188D88FF00000000348ECDFF96EB
+          FFFF56D4FFFF58D3FFFF58D3FFFF58D3FFFF58D2FFFF58D2FFFF58D2FFFF5AD4
+          FFFF5ED6FFFF60D7FFFF5ED8FFFF9DEDFFFF3A8ED8FF00000000328CCCFF99EA
+          FFFF4ED1FFFF51D0FFFF52D1FFFF52D1FFFF52D1FFFF52D1FFFF52D1FFFF52D1
+          FFFF53D1FFFF53D1FFFF4FD2FFFF9BEAFFFF348DCEFF00000000328CCCFF9DEA
+          FFFF46CEFFFF49CEFFFF4ACFFFFF4ACFFFFF4ACFFFFF4ACFFFFF4ACFFFFF4ACF
+          FFFF4ACFFFFF49CEFFFF46CEFFFF9DEAFFFF328CCCFF00000000318CCCFFA2ED
+          FFFF8CE4FFFF8FE4FFFF90E4FFFF90E4FFFF90E4FFFF90E4FFFF90E4FFFF90E4
+          FFFF90E4FFFF8FE4FFFF8CE4FFFFA2EDFFFF318CCCFF00000000318CCCFFA9EF
+          FFFF36B5EEFF3AB6EEFF3BB7EEFF3BB7EEFF3BB7EEFF3BB7EEFF3BB7EEFF3BB7
+          EEFF3BB7EEFF3AB6EEFF36B5EEFFA9EFFFFF318CCCFF00000000328CCCFFB3F3
+          FFFF36CDFFFF3ACDFFFF3BCEFFFF3BCEFFFF3BCEFFFF3BCEFFFF3BCEFFFF3BCE
+          FFFF3BCEFFFF3ACDFFFF36CDFFFFB3F3FFFF328CCCFF00000000358ECEFF85EA
+          FFFF85E7FFFF86E6FFFF87E6FFFF87E6FFFF87E6FFFF87E6FFFF87E6FFFF87E6
+          FFFF87E6FFFF86E6FFFF85E7FFFF85EAFFFF358ECEFF000000003589C2EF358E
+          CEFF348DCCFF348CCCFF348CCCFF348CCCFF348CCCFF348CCCFF348CCCFF348C
+          CCFF348CCCFF348CCCFF348DCCFF358ECEFF3589C2EF00000000}
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          89504E470D0A1A0A0000000D49484452000000100000001008060000001FF3FF
+          610000001974455874536F6674776172650041646F626520496D616765526561
+          647971C9653C000002624944415478DA94934D48545114C77FF7BE37331AA433
+          2246280D8324B528D12471514ABB028BA8A04514B8890832CA5DB688DAB4893E
+          902469510CD542ECC35AB5C90F9084665AD4A2DCE4473999CC38699AF9E64DE7
+          BE372E53BABC73DF7DE79EFFFF7FCEBDE7A9E4EDA64CDEC985DD7C1EE4597728
+          D04AA16C6BAEEEDC48C436E0BA138720279B79E547FC73888212B320197F1E36
+          1EDB750559BC133E5F339F12B00681C912076A3A71DD3ECF657BACCE22995441
+          7C9D04CC14A9FE256F7795C0AC9789D41EC3CB6D3D06BD22210B686B69954000
+          3971CEBCF609D62AC19272ED25123D37B0030FC5B11BEDEF485D5691B0AF6176
+          10029A8B4F0E12AEDDCC42A945A2F3595E2B2D1C2AE7135821090EFAA60A66D6
+          061C0C70E1D101DACFB4111F8B3337956665F63B1EC1F8F01084364850B1A818
+          3521B20A60432AFEA19E4F5C3E19E5FE83380DBB9A78A90669EC3EDD602BA5B1
+          B462B4EFA37F4B32554423C4EAA3FEB5052CDE74276839B2492EBF9DA35BDBB8
+          F36A908ED853EEC23B93BF5430CEF6064D636B84C6E3F5CC8CA7FD4C44D90797
+          C3D43464E619ECEFE5DEA500BF9D90777A3A2F2AE1CA08E9598BB9AF5958FC82
+          928C088418E81AA2E570294C4E40FA073747629CBDB20F961D1CD73F7F6DD20C
+          16955156554A3663319FFA8965293289319A3B4E41C91E01A7B835B285F35705
+          EC08B9E3FAE57A7D60C43656781FE5514D763A43D5B64A7A9325542ECDB37F47
+          095DA331DAAFB7C21FE9173B20A6D0DAEF173BBB981B48BE186EF6DA549AC8F8
+          83F62463DF6A484DBE25361D646F9DE6FDE37EE9FFBCA76CC02BAE9A28FC9C54
+          8B85F9FFB12CF6E1AF000300C5DBCD96CEEA7D9B0000000049454E44AE426082}
+        FileName = 
+          '\\Srv-fs02\projektdaten\Projekte\LCPro\Icons\fatcow-hosting-icon' +
+          's-3.9.2-all\fatcow-hosting-icons-3.9.2\FatCow_Icons16x16\note_ed' +
+          'it.png'
+      end>
+  end
+end
